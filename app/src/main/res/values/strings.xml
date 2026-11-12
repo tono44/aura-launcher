@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Aura</string>
+    <string name="settings">Ajustes</string>
+    <string name="empty_apps">No se han encontrado aplicaciones</string>
+    <string name="watch_title">Seguir viendo</string>
+    <string name="watch_enable">Activar «Seguir viendo»</string>
+    <string name="watch_enable_hint">Permite a Aura ver qué reproduces</string>
+    <string name="apps_title">Aplicaciones</string>
+</resources>
