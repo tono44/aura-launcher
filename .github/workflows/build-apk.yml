@@ -20,8 +20,9 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      # Instala el SDK de Android y acepta sus licencias.
-      - uses: android-actions/setup-android@v3
+      # Los runners de GitHub ya incluyen el SDK de Android: solo hay que aceptar las licencias.
+      - name: Aceptar licencias del SDK
+        run: yes | sdkmanager --licenses > /dev/null || true
 
       # El proyecto no incluye gradlew: se usa Gradle 8.9 directamente.
       - uses: gradle/actions/setup-gradle@v4
