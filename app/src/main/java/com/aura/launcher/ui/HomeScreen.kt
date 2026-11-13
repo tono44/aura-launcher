@@ -54,8 +54,8 @@ import com.aura.launcher.data.AppEntry
 import com.aura.launcher.data.WatchEntry
 import com.aura.launcher.ui.theme.AuraColors
 import kotlinx.coroutines.delay
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
 // Medidas en dp. Si algo se ve apretado en tu tele, empieza por ajustar estas constantes.
@@ -207,15 +207,16 @@ private fun SectionLabel(text: String) {
 
 @Composable
 private fun Clock(compact: Boolean, modifier: Modifier = Modifier) {
-    val now by produceState(initialValue = LocalDateTime.now()) {
+    // java.time exige Android 8; SimpleDateFormat funciona en todas las versiones.
+    val now by produceState(initialValue = Date()) {
         while (true) {
-            value = LocalDateTime.now()
+            value = Date()
             delay(10_000)
         }
     }
     val locale = Locale.getDefault()
-    val time = now.format(DateTimeFormatter.ofPattern("HH:mm", locale))
-    val date = now.format(DateTimeFormatter.ofPattern("EEEE, d 'de' MMMM", locale))
+    val time = SimpleDateFormat("HH:mm", locale).format(now)
+    val date = SimpleDateFormat("EEEE, d 'de' MMMM", locale).format(now)
         .replaceFirstChar { it.titlecase(locale) }
 
     Column(modifier) {
